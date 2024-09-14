@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        * {
+            font-size: 17px;
+            /* margin: 0px;
+            padding: 0px; */
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #bf29de;
+        }
+
+        .field {
+            width: 30%;
+            background-color: #1ba0a0;;
+            margin: 30px 200px;
+            padding: 30px 30px;
+            border-radius: 10px;
+        }
+
+        .table {
+            margin: 0px 0px;
+        }
+
+        #alert {
+            color: red;
+            font-size: 15px;
+
+        }
+
+        .type {
+            background-color: antiquewhite;
+            width: 50vh;
+            height: 8vh;
+
+            border-radius: 8px;
+        }
+
+        #login {
+            width: 60%;
+            border-radius: 5px;
+            background-color: #dc58c7;
+            font-weight: bolder;
+            padding: 8px 25px;
+            margin: 5px 15px;
+            cursor: pointer;
+        }
+
+        #show {
+            width: 60px;
+            border-radius: 5px;
+            border-color: cyan;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form onsubmit="return validate()" action="">
+        <center>
+            <fieldset class="field">
+                <h2><u>Registration Form</u></h2>
+                <table cellpadding="8" cellspacing="5" class="teble">
+                    <tr>
+                        <td>
+                            Username:
+                        </td>
+                        <td>
+                            <input type="text" name="" id="name" class="type">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Gender:
+                        </td>
+                        <td>
+                            <label for="male">Male</label><input type="radio" name="Gender" value="Male" id="male">
+                            <label for="female">Female</label><input type="radio" name="Gender" value="Female"
+                                id="male">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Create Password:
+                        </td>
+                        <td>
+                            <input type="password" name="" id="password" class="type">
+                        </td>
+                        <td>
+                            <button type="button" onclick="toogle(this)" id="show">Show</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Confirm Password:
+                        </td>
+                        <td>
+                            <input type="password" class="type" name="" id="cpassword" onkeyup="check(this)"><br>
+                            <error id="alert"></error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" name="Resister" id="login" value="Submit">
+                <!-- <input type="reset" name="Reset" id="reset"> --><br>
+                Already have an account?<a href=".\login.html">Login</a>
+            </fieldset>
+        </center>
+    </form>
+</body>
+<script>
+    var password = document.getElementById('password');
+    var cpassword = document.getElementById('cpassword');
+    var name = document.getElementById('name');
+    var show = document.getElementById('show');
+    function toogle(elem) {
+        var type = password.getAttribute('type');
+        if (type === 'password') {
+            password.setAttribute('type', 'text');
+            elem.innerText = "Hide";
+        }
+        else {
+            password.setAttribute('type', 'password');
+            elem.innerText = "Show";
+        }
+    }
+
+    var flag = 1;     // 1-> no errors | 0-> Erros
+    function check(elem) {
+        if (elem.value.length > 1) {
+            if (elem.value != password.value) {
+                document.getElementById('alert').innerHTML = "Password does not match";
+                flag = 0;
+            }
+            else {
+                document.getElementById('alert').innerHTML = "";
+                flag = 1;
+            }
+        }
+        else {
+            document.getElementById('alert').innerHTML = "Please Enter Confirm Password";
+            flag = 0;
+        }
+    }
+    function validate() {
+        if (flag == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+</script>
+
+</html>
